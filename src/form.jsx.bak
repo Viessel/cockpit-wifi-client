@@ -13,13 +13,14 @@ export const WifiForm = () => {
     const [mask, setMask] = React.useState('');
     const [gateway, setGateway] = React.useState('');
     const [update, setUpdate] = React.useState(0);
+    const [infoKey, setInfoKey] = React.useState(0);
     const [msg, setMsg] = React.useState('');
 
     const connect = React.useCallback(async () => {
         console.log(ssid, password, autoconnect, dhcp, ip, mask, gateway);
         const res = await cockpit.script("/opt/scripts/nmcli-connect.sh " + ssid + " " + password + " " + " " + autoconnect + " " + dhcp + " " + ip + " " + mask + " " + gateway, { superuser: "no" });
-        console.log(res);
-        setMsg(res);
+      console.log(res);
+      setMsg(res);
     }, [ssid, password, autoconnect, dhcp, ip, mask, gateway]);
 
     const handlePasswordChange = (_event, password) => {
@@ -40,7 +41,7 @@ export const WifiForm = () => {
         const loadSsidItems = async () => {
             const data = await cockpit.script("/opt/scripts/nmcli-scan.sh");
             const json = await JSON.parse(data);
-            setSsidItems(json);
+            setSsidItems(json); 
         };
         loadSsidItems();
     }, [update]);
