@@ -78,7 +78,7 @@ label="Nombre de la Red"
             >
 
                 <Select id="ssid" isOpen={isOpen} selected={ssid} onSelect={onSelect} onOpenChange={isOpen => setIsOpen(isOpen)} toggle={toggle} shouldFocusToggleOnSelect>
-                    <SelectList>
+                    <SelectList style={{ maxHeight: '200px', overflowY: 'auto' }}>
                         {Object.keys(ssidItems).map((key) => {
                             return (
                                 <SelectOption key={ key } value={ ssidItems[key] }>
